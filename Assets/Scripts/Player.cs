@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -22,5 +23,12 @@ public class Player : MonoBehaviour
             animator.Play("Flap");
             rigidBody.velocity = new Vector2(0, yVelocity);
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        // ContactPoint2D contactPoint = other.GetContact(0);
+        animator.Play("Hurt");
+        SceneManager.LoadScene("GameOver");
     }
 }
